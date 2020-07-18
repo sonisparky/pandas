@@ -1,0 +1,162 @@
+import pandas as pd
+import numpy as np
+import openpyxl
+#dataframe
+
+'''dict={'name':['soni','priya','jeevs','bills'],'job':['Smart Factory','Developer','IOS','Coding'],'age':[22,23,22,23]}
+all=pd.DataFrame(dict)
+print(all)'''
+
+#series and order or index
+
+'''a=[22,99,55,44,33,22]
+order=[1,2,3,4,5,6]
+s=pd.Series(a,index=order) #a.index=['a','b','c','e','f','g']
+print(s)'''
+
+#using numpy in pandas
+
+'''index=['a','b','c','d','e']
+arr=np.random.randn(5)
+s=pd.Series(arr,index=index)
+print(s)'''
+
+#Slicing
+
+'''a=[22,99,55,44,33,22]
+a=pd.Series(a)
+print(a)
+print(a[:3])
+print(a[0:3])
+print(a[:-1])
+print(a[0:4:2])'''
+
+#append
+
+'''s=[100,99,44,65,433,777]
+s=pd.Series(s)
+a=['a','d','c','m','j','h']   #appendind two series in one
+a=pd.Series(a)
+s1=s.append(a)
+print(s1)'''
+
+#Drop (it means droping of a specified index)
+
+'''s=[100,99,44,65,433,777]
+s=pd.Series(s)
+print(s.drop(2))
+print(s) '''        #so here when we try to print s it print the 2nd index which we try to drop because we didnt save that specific event to a variable
+
+#Series Operations
+
+'''a=[9,6,5,4,3,2,8]    
+a=pd.Series(a)      
+b=[4,5,6,7]
+b=pd.Series(b)
+plus=a.add(b)       #adding operation
+print("addition :",plus)
+sub=a.sub(b)   #subtracting
+print("subtraction :",sub)
+mul=a.mul(b)    #multipliction
+print("multiplication :",mul)
+div=a.div(b)    #dividing
+print("division :",div)'''
+
+# Mean Min and Max
+
+'''a=[9,6,5,4,3,2,8]    
+a=pd.Series(a)      
+print('median :',a.median())
+print('Min :',a.min())
+print('Max :', a.max())'''
+
+
+# creating data frame
+
+'''date=pd.date_range('today',periods=6)
+arr=np.random.randn(6,4)
+columns=['A','B','C','D']
+s1=pd.DataFrame(arr,index=date,columns=columns)
+print(s1)'''
+
+'''dict={'name':['soni','priya','jeevs','bills','satish','asif','k7','Benny'],
+'job':['Smart Factory','Developer','IOS','Coder','Business','Web Developer','IT GUY','Coder'],
+'age':[22,23,22,23,24,23,24,np.nan]}
+lables=['A','B','C','D','E','F','G','I']
+done=pd.DataFrame(dict,index=lables)'''
+
+'''print(done)
+print(done.head(3))  # default head gives first 5 and tail give last 5
+print(done.tail(2))
+print(done.columns)
+print(done.index)
+print(done.values)'''
+
+# To see statistics data for your date frame use DESCRIBE function
+'''print(done.describe())
+
+# To traspose your data T is used
+print(done.T)
+
+# To sort ur values by values
+print(done.sort_values(by='name'))
+
+# To sort ur data by index
+print(done.sort_index(ascending=False))'''  #for ascending order replace it with true
+
+# scilicing in data frame along with sorting
+'''print(done.sort_values(by='name')[1:4])'''
+
+# To need specific columns
+'''print(done[['name','age']])'''
+
+# To avoid confusion while sciling use iloc
+'''print(done.iloc[1:4])'''  #i is used for integer
+
+# To check if any null value is present in ur dataframe
+'''print(done.isnull())'''  #if any value present it throws True
+
+# To access a specific values
+'''h=done.loc['C']
+print(h)'''
+
+# Mean
+'''print(done[1:4].mean())
+print(done.mean())'''
+
+# Sum
+'''print(done['age'].sum())''' # when u give only done.sum() it adds integer for string it display the concatenation of it
+
+# Lower and upper
+'''a=['a','ABBY','bob','LONYY','LonT']
+a=pd.Series(a)
+print(a.str.lower())
+print(a.str.upper())'''
+
+# Operations for dataframe missing values
+'''print(done)
+meanage=done['age'].mean()
+print(meanage)
+print(done.fillna(meanage))'''  # filling mean age values in null places
+
+# Droping null values
+'''print(done.dropna(how='any'))'''
+
+'''done.to_csv('friends.csv')
+now=pd.read_csv('friends.csv')   #to csv files
+print(now.head(4))'''
+
+'''done.to_excel('friends.xlsx',sheet_name='sheet1')
+one=pd.read_excel('friends.xlsx','sheet1',index_col=None,na_values=['NA'])
+print(one)'''
+
+# Visualization in pandas
+'''import matplotlib.pyplot
+s=pd.Series(np.random.randn(50), index=pd.date_range('today',periods=50))
+s=s.cumsum()
+s.plot()'''
+
+# To remove repeated data
+
+a=pd.DataFrame({'A':[1,22,22,22,22,44,3,3,5,6,77,7,7,7]})
+print(a.loc[ a['A'].shift() != a['A'] ])
